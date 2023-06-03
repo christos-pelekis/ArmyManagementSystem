@@ -1,0 +1,39 @@
+﻿@if (TempData["CreateStaffMemberSuccess"] != null)
+{
+	<div class="alert alert-dismissible alert-success mt-3">
+		<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		<strong>@TempData["CreateStaffMemberSuccess"]</strong>
+	</div>
+}
+
+@if (TempData["EditStaffMemberSuccess"] != null)
+{
+	<div class="alert alert-dismissible alert-success mt-3">
+		<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		<strong>@TempData["EditStaffMemberSuccess"]</strong>
+	</div>
+}
+
+@if (TempData["DeleteStaffMemberSuccess"] != null)
+{
+	<div class="alert alert-dismissible alert-success mt-3">
+		<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		<strong>@TempData["DeleteStaffMemberSuccess"]</strong>
+	</div>
+}
+
+@if (TempData["CreateLeaveRequestSuccess"] != null)
+{
+	<div class="alert alert-dismissible alert-success mt-3">
+		<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		<strong>@TempData["CreateLeaveRequestSuccess"]</strong>
+	</div>
+}
+
+@if (TempData["DeleteLeaveRequestSuccess"] != null)
+{
+	<div class="alert alert-dismissible alert-success mt-3">
+		<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		<strong>@TempData["DeleteLeaveRequestSuccess"]</strong>
+	</div>
+}

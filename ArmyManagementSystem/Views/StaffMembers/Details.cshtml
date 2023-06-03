@@ -1,0 +1,102 @@
+﻿@model ArmyManagementSystem.Models.StaffMember
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="mt-3">
+    <h1>Λεπτομέρειες μέλους</h1>
+</div>
+<div>    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Αριθμός μητρώου:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.SerialNumber
+        </dd>
+        <dt class = "col-sm-2">
+            Βαθμός:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Rank
+        </dd>
+        <dt class = "col-sm-2">
+            Επώνυμο:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Surname
+        </dd>
+        <dt class = "col-sm-2">
+            Όνομα:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Name
+        </dd>
+        <dt class = "col-sm-2">
+            Πατρώνυμο:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.FatherName
+        </dd>
+        <dt class = "col-sm-2">
+            Ημερομηνία γέννησης:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.DateOfBirth.ToString("dd-MM-yyyy")
+        </dd>
+        <dt class = "col-sm-2">
+            Χρώμα κόμης:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.ColorOfHair
+        </dd>
+        <dt class = "col-sm-2">
+            Χρώμα οφθαλμών:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.ColorOfEyes
+        </dd>
+        <dt class = "col-sm-2">
+            Ύψος:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Height
+        </dd>
+        <dt class = "col-sm-2">
+            Ομάδα αίματος:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.BloodType
+        </dd>
+        <dt class = "col-sm-2">
+            Διεύθυνση:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Address
+        </dd>
+        <dt class = "col-sm-2">
+            Τηλέφωνο:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.PhoneNumber
+        </dd>
+        <dt class = "col-sm-2">
+            Email:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Email
+        </dd>
+        <dt class="col-sm-2">
+            Άδειες:
+        </dt>
+        <dd class="col-sm-10">
+            <a asp-controller="LeaveRequests" asp-action="ByStaffMember" asp-route-staffMemberId="@Model.StaffMemberId" class="btn btn-info">Προβολή</a>          
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="StaffMembers" asp-action="Edit" asp-route-id="@Model.StaffMemberId" class="btn btn-primary">Επεξεργασία</a>
+    <a asp-controller="StaffMembers" asp-action="Index" class="btn btn-secondary">Πίσω</a>
+</div>

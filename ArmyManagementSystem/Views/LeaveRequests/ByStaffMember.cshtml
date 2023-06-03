@@ -1,0 +1,126 @@
+﻿@model IEnumerable<ArmyManagementSystem.Models.LeaveRequest>
+
+@{
+    ViewData["Title"] = "ByStaffMember";
+
+    // Define an array of leave type names
+    var leaveTypeNames = new[]
+    {
+        "Κανονική", "Τιμητική", "Αναρρωτική", "Αγροτική", "Φοιτητική",
+        "Αντιμετώπιση θεομηνίας", "Προσωπική", "Επικίνδυνης εργασίας",
+        "Γονική", "Ειδική"
+    };
+
+    // Declare a variable to store the leave type totals
+    IEnumerable<object> leaveTypeTotals;
+
+    // Check if the model is not null and contains any leave requests
+    if (Model != null && Model.Any())
+    {
+        // Calculate the leave type totals for the current year
+        leaveTypeTotals = leaveTypeNames
+            // Transform each leave type name into a new object with two properties
+            .Select(leaveTypeName => new
+            {
+                LeaveType = leaveTypeName,
+                TotalLeaveDays = Model
+                    .Where(item => item.LeaveType == leaveTypeName && item.StartDate.Year == DateTime.Now.Year)
+                    .Sum(item => item.LeaveDays)
+            });
+    }
+    else
+    {
+        // If the model is null or doesn't contain any leave requests, set the leave type totals to 0
+        leaveTypeTotals = leaveTypeNames
+            .Select(leaveTypeName => new
+            {
+                LeaveType = leaveTypeName,
+                TotalLeaveDays = 0
+            });
+    }
+
+    // Calculate the sum of all leave days across all leave types for the current year
+    int leaveDaysSum = 0;
+    foreach (var leaveTypeTotal in leaveTypeTotals.Cast<dynamic>())
+    {
+        leaveDaysSum += leaveTypeTotal.TotalLeaveDays;
+    }    
+}
+
+<div class="mt-3">
+    <h4>Ληφθείσες ημέρες άδειας για το έτος @DateTime.Now.Year:</h4>
+    <hr />
+</div>
+<div class="table-responsive">
+    <table class="table table-sm table-bordered table-hover">
+        <thead>            
+        </thead>
+        <tbody>
+            @foreach (var leaveTypeTotal in leaveTypeTotals.Cast<dynamic>())
+            {
+                <tr>
+                    <td><strong>@leaveTypeTotal.LeaveType</strong></td>
+                    <td style="text-align: center; width: 100px;">@leaveTypeTotal.TotalLeaveDays</td>
+                </tr>
+            }
+            <tr class="table-light">
+                <td><strong>Σύνολο</strong></td>
+                <td style="text-align: center; width: 100px;"><strong>@leaveDaysSum</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+</div>
+<p class="mt-3">
+    <a class="btn btn-primary" asp-controller="LeaveRequests" asp-action="Create" asp-route-staffMemberId="@ViewBag.StaffMemberId">Εισαγωγή</a>
+    <a class="btn btn-secondary" asp-controller="StaffMembers" asp-action="Details" asp-route-id="@ViewBag.StaffMemberId">Πίσω</a>
+</p>
+<div class="table-responsive">
+    <table id="leave-requests-table" class="table table-hover table-striped align-middle">
+        <thead class="table-primary">
+            <tr>
+                <th>
+                    ΕΙΔ. ΑΔΕΙΑΣ
+                </th>
+                <th>
+                    ΑΡ. ΗΜΕΡΩΝ
+                </th>
+                <th>
+                    ΑΝΑΧΩΡΗΣΗ
+                </th>
+                <th>
+                    ΕΠΙΣΤΡΟΦΗ
+                </th>
+                <th>
+                    ΤΟΠΟΣ
+                </th>                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.LeaveType
+                    </td>
+                    <td>
+                        @item.LeaveDays
+                    </td>
+                    <td>
+                        @item.StartDate.ToString("dd-MM-yyyy")
+                    </td>
+                    <td>
+                        @item.EndDate.ToString("dd-MM-yyyy")
+                    </td>
+                    <td>
+                        @item.Location
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" title="Διαγραφή" asp-controller="LeaveRequests" asp-action="Delete" asp-route-id="@item.LeaveRequestId"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

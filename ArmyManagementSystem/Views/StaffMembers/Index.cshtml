@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ArmyManagementSystem.Models.StaffMember>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p class="mt-3">
+    <a class="btn btn-primary" asp-controller="StaffMembers" asp-action="Create"><i class="bi bi-person-add"></i>&nbsp;Δημιουργία</a>
+</p>
+<div class="table-responsive">
+    <table id="staff-members-table" class="table table-hover table-striped align-middle">
+        <thead class="table-primary">
+            <tr>
+                <th>
+                    ΑΡ. ΜΗΤ.
+                </th>
+                <th>
+                    ΒΑΘΜΟΣ
+                </th>
+                <th>
+                    ΕΠΩΝΥΜΟ
+                </th>
+                <th>
+                    ΟΝΟΜΑ
+                </th>            
+                <th>
+                    ΗΜ. ΓΕΝ.
+                </th>
+                <th>
+                    ΔΙΕΥΘΥΝΣΗ
+                </th>
+                <th>
+                    ΤΗΛ.
+                </th>
+                <th>
+                    EMAIL
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @item.SerialNumber
+                </td>
+                <td>
+                    @item.Rank
+                </td>
+                <td>
+                    @item.Surname
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.DateOfBirth.ToString("dd-MM-yyyy")
+                </td>
+                <td>
+                    @item.Address
+                </td>
+                <td>
+                    @item.PhoneNumber
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    <a class="btn btn-info" title="Λεπτομέρειες" asp-controller="StaffMembers" asp-action="Details" asp-route-id="@item.StaffMemberId"><i class="bi bi-person-lines-fill"></i></a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" title="Επεξεργασία" asp-controller="StaffMembers" asp-action="Edit" asp-route-id="@item.StaffMemberId"><i class="bi bi-pencil-square"></i></a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" title="Διαγραφή" asp-controller="StaffMembers" asp-action="Delete" asp-route-id="@item.StaffMemberId"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>

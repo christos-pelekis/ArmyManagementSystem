@@ -1,0 +1,157 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .col {
+        flex-basis: calc(33.33% - 20px);
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="mt-3">
+    <h1>Στατιστικά αδειών</h1>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col">
+        <select id="chartSelector" class="mb-3">
+            <option value="chart1">Ανά μήνα</option>
+            <option value="chart2">Ανά εβδομάδα</option>
+            <option value="chart3">Ανά ημέρα</option>
+        </select>
+
+        <div id="chart1Container" style="height: 300px; width: 100%;"></div>
+        <div id="chart2Container" style="height: 300px; width: 100%;"></div>
+        <div id="chart3Container" style="height: 300px; width: 100%;"></div>
+    </div>
+
+    <div class="col">        
+        <div id="chart4Container" style="height: 300px; width: 100%;"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">Μέσος αριθμός χορηγηθεισών ημερών:</div>
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.AvgLeaveDays</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">Μέγιστος αριθμός χορηγηθεισών ημερών:</div>
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.MaxLeaveDays</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">Ελάχιστος αριθμός χορηγηθεισών ημερών:</div>
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.MinLeaveDays</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // Retrieve the data from the ViewBag
+        var monthlyLeaveRequestCounts = @Html.Raw(Json.Serialize(ViewBag.MonthlyLeaveRequestCounts));
+        var weeklyLeaveRequestCounts = @Html.Raw(Json.Serialize(ViewBag.WeeklyLeaveRequestCounts));
+        var dailyLeaveRequestCounts = @Html.Raw(Json.Serialize(ViewBag.DailyLeaveRequestCounts));
+
+        // Define the chart options for each chart
+        var chart1Options = {
+            animationEnabled: true,
+            title: {
+                text: "Χορηγηθείσες άδειες ανά μήνα (@(new DateTime(DateTime.UtcNow.Year, 1, 1).ToString("MM-yyyy")) έως @(new DateTime(DateTime.UtcNow.Year, 12, 1).ToString("MM-yyyy")))"
+            },
+            data: [{
+                type: "column",
+                dataPoints: monthlyLeaveRequestCounts
+            }]
+        };
+
+        var chart2Options = {
+            animationEnabled: true,
+            title: {
+                text: "Χορηγηθείσες άδειες ανά εβδομάδα (@(new DateTime(DateTime.UtcNow.Year, 1, 1).ToString("dd-MM-yyyy")) έως @(new DateTime(DateTime.UtcNow.Year, 12, 31).ToString("dd-MM-yyyy")))"
+            },
+            data: [{
+                type: "column",
+                dataPoints: weeklyLeaveRequestCounts
+            }]
+        };
+
+        var chart3Options = {
+            animationEnabled: true,
+            title: {
+                text: "Χορηγηθείσες άδειες ανά ημέρα (@(new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, 1).ToString("dd-MM-yyyy")) έως @(new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.DaysInMonth(DateTime.UtcNow.Year, DateTime.UtcNow.Month)).ToString("dd-MM-yyyy")))"
+            },
+            data: [{
+                type: "column",
+                dataPoints: dailyLeaveRequestCounts
+            }]
+        };
+
+        // Create the charts
+        var chart1 = new CanvasJS.Chart("chart1Container", chart1Options);
+        var chart2 = new CanvasJS.Chart("chart2Container", chart2Options);
+        var chart3 = new CanvasJS.Chart("chart3Container", chart3Options);
+
+        // Function to handle the chart selection change
+        function handleChartSelection() {
+            var selectedChartId = document.getElementById("chartSelector").value;
+
+            // Hide all charts
+            chart1.container.style.display = "none";
+            chart2.container.style.display = "none";
+            chart3.container.style.display = "none";
+
+            // Show the selected chart
+            var selectedChart = eval(selectedChartId);
+            selectedChart.container.style.display = "block";
+
+            // Render the selected chart
+            selectedChart.render();
+        }
+
+        // Add event listener for chart selection change
+        document.getElementById("chartSelector").addEventListener("change", handleChartSelection);
+
+        // Initial chart selection
+        handleChartSelection();
+    });
+
+    window.onload = function () {
+        var leaveTypeCounts = @Html.Raw(Json.Serialize(ViewBag.LeaveTypeCounts));
+
+        var chart4 = new CanvasJS.Chart("chart4Container", {
+            animationEnabled: true,
+            title: {
+                text: "Χορηγηθείσες άδειες ανά είδος άδειας"
+            },
+            data: [{
+                type: "pie",                
+                dataPoints: leaveTypeCounts
+            }]
+        });
+        chart4.render();
+    }
+</script>

@@ -1,0 +1,126 @@
+﻿@model ArmyManagementSystem.Models.StaffMember
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="mt-3">
+    <h1>Δημιουργία νέου μέλους</h1>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="StaffMembers" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mt-2">
+                <label asp-for="SerialNumber" class="control-label">Αριθμός μητρώου:</label>
+                <input asp-for="SerialNumber" class="form-control" />
+                <span asp-validation-for="SerialNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Rank" class="control-label">Βαθμός:</label>
+                <select asp-for="Rank" class="form-select">
+                    <option value="ΣΤΡΤΗΣ">ΣΤΡΤΗΣ</option>
+                    <option value="ΥΔΝΕΑΣ">ΥΔΝΕΑΣ</option>
+                    <option value="ΔΝΕΑΣ">ΔΝΕΑΣ</option>
+                    <option value="ΛΧΙΑΣ">ΛΧΙΑΣ</option>
+                    <option value="ΥΔΝΕΑΣ ΟΒΑ">ΥΔΝΕΑΣ ΟΒΑ</option>
+                    <option value="ΔΝΕΑΣ ΟΒΑ">ΔΝΕΑΣ ΟΒΑ</option>
+                    <option value="ΔΝΕΑΣ ΕΜΘ-ΕΠΟΠ">ΔΝΕΑΣ ΕΜΘ-ΕΠΟΠ</option>
+                    <option value="ΛΧΙΑΣ ΕΜΘ-ΕΠΟΠ">ΛΧΙΑΣ ΕΜΘ-ΕΠΟΠ</option>
+                    <option value="ΛΧΙΑΣ ΕΚ ΣΜΥ">ΛΧΙΑΣ ΕΚ ΣΜΥ</option>
+                    <option value="ΕΠΧΙΑΣ ΕΜΘ-ΕΠΟΠ">ΕΠΧΙΑΣ ΕΜΘ-ΕΠΟΠ</option>
+                    <option value="ΕΠΧΙΑΣ ΕΚ ΣΜΥ">ΕΠΧΙΑΣ ΕΚ ΣΜΥ</option>
+                    <option value="ΑΛΧΙΑΣ ΕΜΘ-ΕΠΟΠ">ΑΛΧΙΑΣ ΕΜΘ-ΕΠΟΠ</option>
+                    <option value="ΑΛΧΙΑΣ ΕΚ ΣΜΥ">ΑΛΧΙΑΣ ΕΚ ΣΜΥ</option>
+                    <option value="ΑΝΘΣΤΗΣ">ΑΝΘΣΤΗΣ</option>
+                    <option value="ΔΕΑ">ΔΕΑ</option>
+                    <option value="ΑΝΘΛΓΟΣ">ΑΝΘΛΓΟΣ</option>
+                    <option value="ΥΠΛΓΟΣ">ΥΠΛΓΟΣ</option>
+                    <option value="ΛΓΟΣ">ΛΓΟΣ</option>
+                    <option value="ΤΧΗΣ">ΤΧΗΣ</option>
+                    <option value="ΑΝΧΗΣ">ΑΝΧΗΣ</option>
+                    <option value="ΣΧΗΣ">ΣΧΗΣ</option>
+                    <option value="ΤΑΞΧΟΣ">ΤΑΞΧΟΣ</option>
+                    <option value="ΥΠΤΓΟΣ">ΥΠΤΓΟΣ</option>
+                    <option value="ΑΝΤΓΟΣ">ΑΝΤΓΟΣ</option>
+                    <option value="ΣΤΓΟΣ">ΣΤΓΟΣ</option>
+                </select>
+                <span asp-validation-for="Rank" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Surname" class="control-label">Επώνυμο:</label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Name" class="control-label">Όνομα:</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="FatherName" class="control-label">Πατρώνυμο:</label>
+                <input asp-for="FatherName" class="form-control" />
+                <span asp-validation-for="FatherName" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="DateOfBirth" class="control-label">Ημερομηνία γέννησης:</label>
+                <input asp-for="DateOfBirth" type="date" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="ColorOfHair" class="control-label">Χρώμα κόμης:</label>
+                <input asp-for="ColorOfHair" class="form-control" />
+                <span asp-validation-for="ColorOfHair" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="ColorOfEyes" class="control-label">Χρώμα οφθαλμών:</label>
+                <input asp-for="ColorOfEyes" class="form-control" />
+                <span asp-validation-for="ColorOfEyes" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Height" class="control-label">Ύψος:</label>
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="BloodType" class="control-label">Ομάδα αίματος:</label>
+                <select asp-for="BloodType" class="form-select">
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+                <span asp-validation-for="BloodType" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Address" class="control-label">Διεύθυνση:</label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="PhoneNumber" class="control-label">Τηλέφωνο:</label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Email" class="control-label">Email:</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Δημιουργία" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-controller="StaffMembers" asp-action="Index">Πίσω</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
