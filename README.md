@@ -34,7 +34,7 @@ The ArmyManagementSystem is developed using C#, ASP.NET Core, Entity Framework, 
 
 ### Leave Request Management
 
-- Log and track all leave requests submitted by personnel.
+- Log and track all approved leave requests submitted by personnel.
 - Capture essential details such as the requested dates, leave type, and personnel information.
 - Maintain a comprehensive and searchable log of all approved leave requests.
 - Keep a record of historical leave data for reference and reporting purposes.
@@ -56,49 +56,49 @@ The ArmyManagementSystem is developed using C#, ASP.NET Core, Entity Framework, 
 
 ## Usage
 
-![](../screenshots/ams_home.png)
+![](screenshots/ams_home.png)
 
 1. Managing Personnel
 
 	- Navigate to the "Personnel" ("Προσωπικό") section to manage personnel records.
-	
-		![](../screenshots/ams_staff_index.png)
+
+		![](screenshots/ams_staff_index.png)
 	- Click the appropriate icons to view the details of a personnel record, edit their details or delete it.
-   - Create a new personnel profile by clicking on the "Create" ("Δημιουργία") button.
-   - Fill in the required details such as name, rank, and contact info.
-		
-		![](../screenshots/ams_staff_create.png)
-   - Click "Create" ("Δημιουργία") to add the personnel record to the system.   
-	
+	- Create a new personnel profile by clicking on the "Create" ("Δημιουργία") button.
+	- Fill in the required details such as name, rank, and contact info.
+
+		![](screenshots/ams_staff_create.png)
+	- Click "Create" ("Δημιουργία") to add the personnel record to the system.   
+
 2. Managing Leave Requests
 
-   - Navigate to the "Personnel" ("Προσωπικό") section.
-   - Search for a personnel record and click on their "Details" ("Λεπτομέρειες") icon (light blue button). 
-   - Click the "View" ("Προβολή") button next to the "Leave Requests" ("Άδειες") text.
-		
-		![](../screenshots/ams_staff_details.png)
+	- Navigate to the "Personnel" ("Προσωπικό") section.
+	- Search for a personnel record and click on their "Details" ("Λεπτομέρειες") icon (light blue button). 
+	- Click the "View" ("Προβολή") button next to the "Leave Requests" ("Άδειες") text.
+
+		![](screenshots/ams_staff_details.png)
 	- At the top of the page you can see the total number of the current year's leave requests by leave type for a particular personnel record. At the bottom you can see the personnel record's leave request history with information on each leave request.
-		
-		![](../screenshots/ams_leave_index.png)	
+
+		![](screenshots/ams_leave_index.png)	
 	- Click the "Delete" ("Διαγραφή") icon to delete a leave request from the personnel record's leave request history.
 	- Click "Insert" ("Εισαγωγή") to insert a new leave request to the personnel record's history.
 	- Fill in the required leave request details.
-	
-		![](../screenshots/ams_leave_create.png)
+
+		![](screenshots/ams_leave_create.png)
 	- Click "Insert" ("Εισαγωγή") to add the leave request record to the system. 
 
 3. Statistical Analysis
 
-   - Navigate to the "Statistics" ("Στατιστικά") section to access various statistical reports and charts about leave requests for the current year.
-			
-		![](../screenshots/ams_stats_index.png)
-   - Use the selector to view monthly ("Ανά μήνα"), weekly ("Ανά εβδομάδα"), and daily ("Ανά ημέρα") leave request counts in graphical form.
-	
-		![](../screenshots/ams_by_month.png)
-		![](../screenshots/ams_by_week.png)
-		![](../screenshots/ams_by_day.png)
-   - Analyze the distribution of leave types using the pie chart.
-   - View the minimum, maximum and average leave days requested for the year in the corresponding cards.
+	  - Navigate to the "Statistics" ("Στατιστικά") section to access various statistical reports and charts about leave requests for the current year.
+
+		![](screenshots/ams_stats_index.png)
+	  - Use the selector to view monthly ("Ανά μήνα"), weekly ("Ανά εβδομάδα"), and daily ("Ανά ημέρα") leave request counts in graphical form.
+
+		![](screenshots/ams_by_month.png)
+		![](screenshots/ams_by_week.png)
+		![](screenshots/ams_by_day.png)
+	  - Analyze the distribution of leave types using the pie chart.
+	  - View the minimum, maximum and average leave days requested for the year in the corresponding cards.
 
 ## Technologies Used
 
